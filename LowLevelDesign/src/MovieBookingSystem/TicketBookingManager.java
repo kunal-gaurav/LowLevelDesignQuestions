@@ -43,10 +43,11 @@ public class TicketBookingManager {
 		return true;
 	}
 	
-	public int getFreeSeatsCount(int showId) {
-		Screen screen = screenCache.get(showId);
+	public int getFreeSeatsCount(Show show) {
+		Screen screen = screenCache.get(show.getShowId());
 		if(null==screen) {
-			return 0;
+			screen = new Screen(show.getCinema().getScreenRow(), show.getCinema().getScreenColumn());
+			screenCache.put(show.getShowId(), screen);
 		}
 		return screen.getFreeSeatsCount();
 	}
