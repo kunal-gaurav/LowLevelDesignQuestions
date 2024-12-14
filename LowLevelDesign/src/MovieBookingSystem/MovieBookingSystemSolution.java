@@ -43,7 +43,11 @@ public class MovieBookingSystemSolution {
 	}
 	
 	public int getFreeSeatsCount(int showId) {
-		return bookingManager.getFreeSeatsCount(showId);
+		Show show = showManager.getShow(showId);
+		if(null == show) {
+			return 0;
+		}
+		return bookingManager.getFreeSeatsCount(show);
 	}
 	
 	public List<Integer> listCinemas(int movieId, int cityId){
